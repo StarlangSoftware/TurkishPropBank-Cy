@@ -1,4 +1,4 @@
-from PropBank.ArgumentTypeEnum cimport ArgumentTypeEnum
+from PropBank.ArgumentType import ArgumentType
 
 
 cdef class Frameset(object):
@@ -6,7 +6,7 @@ cdef class Frameset(object):
     cdef list __framesetArguments
     cdef str __id
 
-    cpdef bint containsArgument(self, ArgumentTypeEnum argumentType)
+    cpdef bint containsArgument(self, object argumentType)
     cpdef addArgument(self, str argumentType, str definition, str function=*)
     cpdef deleteArgument(self, str argumentType, str definition)
     cpdef list getFramesetArguments(self)

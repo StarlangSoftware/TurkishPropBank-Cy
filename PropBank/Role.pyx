@@ -1,6 +1,3 @@
-from PropBank.ArgumentType cimport ArgumentType
-
-
 cdef class Role(object):
 
     def __init__(self, description: str, f: str, n: str):
@@ -54,7 +51,7 @@ cdef class Role(object):
         """
         return self.__n
 
-    cpdef ArgumentTypeEnum getArgumentType(self):
+    cpdef object getArgumentType(self):
         """
         Constructs and returns the argument type for this role.
 

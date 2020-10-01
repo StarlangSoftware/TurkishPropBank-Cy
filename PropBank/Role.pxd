@@ -1,4 +1,4 @@
-from PropBank.ArgumentTypeEnum cimport ArgumentTypeEnum
+from PropBank.ArgumentType import ArgumentType
 
 
 cdef class Role(object):
@@ -8,4 +8,4 @@ cdef class Role(object):
     cpdef str getDescription(self)
     cpdef str getF(self)
     cpdef str getN(self)
-    cpdef ArgumentTypeEnum getArgumentType(self)
+    cpdef object getArgumentType(self)

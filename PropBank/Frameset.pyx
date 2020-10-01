@@ -1,5 +1,4 @@
-from PropBank.ArgumentType cimport ArgumentType
-from PropBank.ArgumentTypeEnum cimport ArgumentTypeEnum
+from PropBank.ArgumentType import ArgumentType
 from PropBank.FramesetArgument cimport FramesetArgument
 import xml.etree.ElementTree
 
@@ -26,7 +25,7 @@ cdef class Frameset(object):
             self.__id = ""
             self.__framesetArguments = []
 
-    cpdef bint containsArgument(self, ArgumentTypeEnum argumentType):
+    cpdef bint containsArgument(self, object argumentType):
         """
         containsArgument method which checks if there is an Argument of the given argumentType.
 
