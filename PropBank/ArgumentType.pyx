@@ -18,7 +18,7 @@ cdef class ArgumentType():
         for argumentType in ArgumentTypeEnum:
             if argumentsType == argumentType.name:
                 return argumentType
-        return ArgumentType.NONE
+        return ArgumentTypeEnum.NONE
 
     @staticmethod
     cdef str getPropbankType(ArgumentTypeEnum argumentType):
