@@ -1,8 +1,5 @@
 cdef class Argument(object):
 
-    cdef str __argumentType
-    cdef str __id
-
     def __init__(self, argument: str):
         """
         A constructor of Argument class which takes argument string which is in the form of argumentType$id
