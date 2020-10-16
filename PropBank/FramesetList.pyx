@@ -1,10 +1,7 @@
-from PropBank.Frameset cimport Frameset
 import os
 
 
 cdef class FramesetList(object):
-
-    cdef list __frames
 
     def __init__(self, directory = "Predicates/"):
         """
