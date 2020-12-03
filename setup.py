@@ -2,7 +2,7 @@ from distutils.core import setup
 from Cython.Build import cythonize
 
 setup(
-    ext_modules=cythonize(["PropBank/*.pyx", "PropBank/*.pxd"],
+    ext_modules=cythonize(["PropBank/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-PropBank-Cy',
     version='1.0.6',
