@@ -29,7 +29,7 @@ Use Git for cloning the code to your local or below line for Ubuntu:
 
 A directory called PropBank will be created. Or you can use below link for exploring the code:
 
-	git clone https://github.com/starlangsoftware/TurkishPropBank-Py.git
+	git clone https://github.com/starlangsoftware/TurkishPropBank-Cy.git
 
 ## Open project with Pycharm IDE
 
@@ -37,7 +37,33 @@ Steps for opening the cloned project:
 
 * Start IDE
 * Select **File | Open** from main menu
-* Choose `TurkishPropBank-PY` file
+* Choose `TurkishPropBank-CY` file
 * Select open as project option
 * Couple of seconds, dependencies will be downloaded. 
 
+Detailed Description
+============
+
++ [FramesetList](#framesetlist)
++ [Frameset](#frameset)
+
+## FramesetList
+
+Frame listesini okumak ve tüm Frameleri hafızada tutmak için
+
+	a = FramesetList()
+
+Framesetleri tek tek gezmek için
+
+	for i in range(a.size()):
+		frameset = a.getFrameset(i)
+
+Bir fiile ait olan Frameseti bulmak için
+
+	frameset = a.getFrameSet("TUR10-1234560")
+
+## Frameset
+
+Bir framesetin tüm argümanlarını bulmak için
+
+	getFramesetArguments(self) -> list
