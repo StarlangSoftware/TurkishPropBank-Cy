@@ -55,7 +55,7 @@ cdef class FramesetList(object):
         """
         cdef Frameset f
         for f in self.__frames:
-            if f.getId == synSetId:
+            if f.getId() == synSetId:
                 return True
         return False
 
@@ -76,7 +76,7 @@ cdef class FramesetList(object):
         cdef Frameset f
         if isinstance(synSetIdOrIndex, str):
             for f in self.__frames:
-                if f.getId == synSetIdOrIndex:
+                if f.getId() == synSetIdOrIndex:
                    return f
         elif isinstance(synSetIdOrIndex, int):
             return self.__frames[synSetIdOrIndex]
