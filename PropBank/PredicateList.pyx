@@ -2,6 +2,7 @@ import os
 import xml.etree.ElementTree
 from collections import KeysView
 
+import pkg_resources
 from PropBank.Predicate cimport Predicate
 from PropBank.RoleSet cimport RoleSet
 from PropBank.Role cimport Role
@@ -11,7 +12,7 @@ cdef class PredicateList(object):
 
     cdef dict __list
 
-    def __init__(self, directory = "Frames/"):
+    def __init__(self, directory = pkg_resources.resource_filename(__name__, 'Frames')):
         """
         A constructor of PredicateList class which reads all predicate files inside the 'Frames' folder. For each
         file inside that folder, the constructor creates a Predicate and puts in inside the list dictionary.

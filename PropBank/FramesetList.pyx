@@ -1,9 +1,10 @@
 import os
 
+import pkg_resources
 
 cdef class FramesetList(object):
 
-    def __init__(self, directory = "Predicates/"):
+    def __init__(self, directory = pkg_resources.resource_filename(__name__, 'Predicates')):
         """
         A constructor of FramesetList class which reads all frameset files inside the Predicates folder. For each
         file inside that folder, the constructor creates a Frameset and puts in inside the frames list.
