@@ -1,24 +1,23 @@
 from PropBank.ArgumentType import ArgumentType
 from PropBank.FramesetArgument cimport FramesetArgument
-import xml.etree.ElementTree
+from xml.etree.ElementTree import Element
 
 
 cdef class Frameset(object):
 
-    def __init__(self, fileName: str = None):
+    def __init__(self, framesetNode: Element = None):
         """
         Another constructor of Frameset class which takes filename as input and reads the frameset
 
         PARAMETERS
         ----------
-        fileName : str
+        framesetNode : Element
             File name of the file to read frameset
         """
-        if fileName is not None:
-            root = xml.etree.ElementTree.parse(fileName).getroot()
-            self.__id = root.attrib["id"]
+        if framesetNode is not None:
+            self.__id = framesetNode.attrib["id"]
             self.__framesetArguments = []
-            for child in root:
+            for child in framesetNode:
                 self.__framesetArguments.append(FramesetArgument(child.attrib["name"], child.text,
                                                                  child.attrib["function"]))
         else:
