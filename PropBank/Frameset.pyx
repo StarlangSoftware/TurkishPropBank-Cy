@@ -16,13 +16,13 @@ cdef class Frameset(object):
         """
         if framesetNode is not None:
             self.__id = framesetNode.attrib["id"]
-            self.__framesetArguments = []
+            self.__frameset_arguments = []
             for child in framesetNode:
-                self.__framesetArguments.append(FramesetArgument(child.attrib["name"], child.text,
-                                                                 child.attrib["function"]))
+                self.__frameset_arguments.append(FramesetArgument(child.attrib["name"], child.text,
+                                                                  child.attrib["function"]))
         else:
             self.__id = ""
-            self.__framesetArguments = []
+            self.__frameset_arguments = []
 
     cpdef bint containsArgument(self, object argumentType):
         """
@@ -38,12 +38,15 @@ cdef class Frameset(object):
         bool
             true if the Argument with the given argumentType exists, false otherwise.
         """
-        for framesetArgument in self.__framesetArguments:
-            if ArgumentType.getArguments(framesetArgument.getArgumentType()) == argumentType:
+        for frameset_argument in self.__frameset_arguments:
+            if ArgumentType.getArguments(frameset_argument.getArgumentType()) == argumentType:
                 return True
         return False
 
-    cpdef addArgument(self, str argumentType, str definition, str function = None):
+    cpdef addArgument(self,
+                      str argumentType,
+                      str definition,
+                      str function = None):
         """
         The addArgument method takes a type and a definition of a FramesetArgument as input, then it creates a new
         FramesetArgument from these inputs and adds it to the framesetArguments list.
@@ -57,18 +60,20 @@ cdef class Frameset(object):
         function: str
             Function of the new FramesetArgument
         """
-        cdef FramesetArgument framesetArgument
+        cdef FramesetArgument frameset_argument
         check = False
-        for framesetArgument in self.__framesetArguments:
-            if framesetArgument.getArgumentType() == argumentType:
-                framesetArgument.setDefinition(definition)
+        for frameset_argument in self.__frameset_arguments:
+            if frameset_argument.getArgumentType() == argumentType:
+                frameset_argument.setDefinition(definition)
                 check = True
                 break
         if not check:
             arg = FramesetArgument(argumentType, definition, function)
-            self.__framesetArguments.append(arg)
+            self.__frameset_arguments.append(arg)
 
-    cpdef deleteArgument(self, str argumentType, str definition):
+    cpdef deleteArgument(self,
+                         str argumentType,
+                         str definition):
         """
         The deleteArgument method takes a type and a definition of a FramesetArgument as input, then it searches for the
         FramesetArgument with these type and definition, and if it finds removes it from the framesetArguments list.
@@ -80,10 +85,10 @@ cdef class Frameset(object):
         definition : str
             Definition of the to be deleted FramesetArgument
         """
-        cdef FramesetArgument framesetArgument
-        for framesetArgument in self.__framesetArguments:
-            if framesetArgument.getArgumentType() == argumentType and framesetArgument.getDefinition() == definition:
-                self.__framesetArguments.remove(framesetArgument)
+        cdef FramesetArgument frameset_argument
+        for frameset_argument in self.__frameset_arguments:
+            if frameset_argument.getArgumentType() == argumentType and frameset_argument.getDefinition() == definition:
+                self.__frameset_arguments.remove(frameset_argument)
                 break
 
     cpdef list getFramesetArguments(self):
@@ -95,7 +100,7 @@ cdef class Frameset(object):
         list
             framesetArguments.
         """
-        return self.__framesetArguments
+        return self.__frameset_arguments
 
     cpdef str getId(self):
         """
@@ -128,10 +133,13 @@ cdef class Frameset(object):
         fileName : str
             Name of the output file.
         """
-        outputFile = open(fileName, mode="w", encoding="utf-8")
-        outputFile.write("<FRAMESET id=\"" + self.__id + "\">\n")
-        for framesetArgument in self.__framesetArguments:
-            outputFile.write("\t<ARG name=\"" + framesetArgument.getArgumentType() + "\" function=\"" +
+        output_file = open(fileName, mode="w", encoding="utf-8")
+        output_file.write("<FRAMESET id=\"" + self.__id + "\">\n")
+        for framesetArgument in self.__frameset_arguments:
+            output_file.write("\t<ARG name=\"" + framesetArgument.getArgumentType() + "\" function=\"" +
                              framesetArgument.getFunction() + "\">" + framesetArgument.getDefinition() + "</ARG>\n")
-        outputFile.write("</FRAMESET>\n")
-        outputFile.close()
+        output_file.write("</FRAMESET>\n")
+        output_file.close()
+
+    def __repr__(self):
+        return f"{self.__id} {self.__frameset_arguments}"

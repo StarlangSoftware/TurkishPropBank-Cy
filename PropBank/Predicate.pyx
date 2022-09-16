@@ -14,7 +14,7 @@ cdef class Predicate(object):
             Lemma of the predicate
         """
         self.__lemma = lemma
-        self.__roleSets = []
+        self.__role_sets = []
 
     cpdef str getLemma(self):
         """
@@ -36,7 +36,7 @@ cdef class Predicate(object):
         roleSet : RoleSet
             RoleSet to be added
         """
-        self.__roleSets.append(roleSet)
+        self.__role_sets.append(roleSet)
 
     cpdef int size(self):
         """
@@ -47,7 +47,7 @@ cdef class Predicate(object):
         int
             the size of the roleSets list.
         """
-        return len(self.__roleSets)
+        return len(self.__role_sets)
 
     cpdef RoleSet getRoleSet(self, int index):
         """
@@ -63,7 +63,7 @@ cdef class Predicate(object):
         RoleSet
             RoleSet at the given index.
         """
-        return self.__roleSets[index]
+        return self.__role_sets[index]
 
     cpdef RoleSet getRoleSetWithId(self, str roleId):
         """
@@ -79,7 +79,10 @@ cdef class Predicate(object):
         RoleSet
             RoleSet which has the given id.
         """
-        for roleSet in self.__roleSets:
-            if roleSet.getId() == roleId:
-                return roleSet
+        for role_set in self.__role_sets:
+            if role_set.getId() == roleId:
+                return role_set
         return None
+
+    def __repr__(self):
+        return f"{self.__lemma} {self.__role_sets}"

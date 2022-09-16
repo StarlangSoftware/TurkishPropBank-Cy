@@ -94,3 +94,6 @@ cdef class RoleSet(object):
         for role in self.__roles:
             if role.getN() == n:
                 return role
+
+    def __repr__(self):
+        return f"{self.__id} {self.__name} {self.__roles}"

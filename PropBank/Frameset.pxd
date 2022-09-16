@@ -3,7 +3,7 @@ from PropBank.ArgumentType import ArgumentType
 
 cdef class Frameset(object):
 
-    cdef list __framesetArguments
+    cdef list __frameset_arguments
     cdef str __id
 
     cpdef bint containsArgument(self, object argumentType)

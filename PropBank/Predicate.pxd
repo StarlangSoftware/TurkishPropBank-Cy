@@ -4,7 +4,7 @@ from PropBank.RoleSet cimport RoleSet
 cdef class Predicate(object):
 
     cdef str __lemma
-    cdef list __roleSets
+    cdef list __role_sets
 
     cpdef str getLemma(self)
     cpdef addRoleSet(self, RoleSet roleSet)

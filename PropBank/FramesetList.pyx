@@ -2,6 +2,8 @@ import pkg_resources
 import xml
 import xml.etree.ElementTree
 
+from PropBank.FramesetArgument cimport FramesetArgument
+
 cdef class FramesetList(object):
 
     def __init__(self, fileName = pkg_resources.resource_filename(__name__, 'data/turkish-propbank.xml')):
@@ -11,8 +13,8 @@ cdef class FramesetList(object):
         """
         self.__frames = []
         root = xml.etree.ElementTree.parse(fileName).getroot()
-        for framesetNode in root:
-            frameset = Frameset(framesetNode)
+        for frameset_node in root:
+            frameset = Frameset(frameset_node)
             self.__frames.append(frameset)
 
     cpdef dict readFromXml(self, str synSetId):
@@ -32,12 +34,13 @@ cdef class FramesetList(object):
         """
         cdef Frameset f
         cdef int i
+        cdef FramesetArgument frameset_argument
         frameset = {}
         for f in self.__frames:
             if f.getId() == synSetId:
                 for i in range(len(f.getFramesetArguments())):
-                    framesetArgument = f.getFramesetArguments()[i]
-                    frameset[framesetArgument.getArgumentType()] = framesetArgument.getDefinition()
+                    frameset_argument = f.getFramesetArguments()[i]
+                    frameset[frameset_argument.getArgumentType()] = frameset_argument.getDefinition()
         return frameset
 
     cpdef bint frameExists(self, str synSetId):

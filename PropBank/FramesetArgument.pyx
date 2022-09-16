@@ -1,6 +1,9 @@
 cdef class FramesetArgument(object):
 
-    def __init__(self, argumentType: str, definition: str, function: str = None):
+    def __init__(self,
+                 argumentType: str,
+                 definition: str,
+                 function: str = None):
         """
         A constructor of FramesetArgument class which takes argumentType and definition as input and initializes
         corresponding attributes
@@ -14,7 +17,7 @@ cdef class FramesetArgument(object):
         function : str
             Function of the frameset argument
         """
-        self.__argumentType = argumentType
+        self.__argument_type = argumentType
         self.__definition = definition
         self.__function = function
 
@@ -27,7 +30,7 @@ cdef class FramesetArgument(object):
         str
             argumentType.
         """
-        return self.__argumentType
+        return self.__argument_type
 
     cpdef str getDefinition(self):
         """
@@ -83,4 +86,4 @@ cdef class FramesetArgument(object):
         str
             string form of frameset argument
         """
-        return self.__argumentType + ":" + self.__definition
+        return self.__argument_type + ":" + self.__definition

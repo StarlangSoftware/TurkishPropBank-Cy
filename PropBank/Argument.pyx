@@ -12,12 +12,14 @@ cdef class Argument(object):
             Argument string containing the argumentType and id
         """
         if "$" in argument:
-            self.__argumentType = argument[0:argument.index("$")]
+            self.__argument_type = argument[0:argument.index("$")]
             self.__id = argument[argument.index("$") + 1:]
         else:
-            self.__argumentType = "NONE"
+            self.__argument_type = "NONE"
 
-    cpdef initWithId(self, str argumentType, str _id):
+    cpdef initWithId(self,
+                     str argumentType,
+                     str _id):
         """
         Another constructor of Argument class which takes argumentType and id as inputs and initializes corresponding 
         attributes
@@ -29,7 +31,7 @@ cdef class Argument(object):
         _id : str 
             Id of the argument
         """
-        self.__argumentType = argumentType
+        self.__argument_type = argumentType
         self.__id = _id
 
     cpdef str getArgumentType(self):
@@ -41,7 +43,7 @@ cdef class Argument(object):
         str
             argumentType.
         """
-        return self.__argumentType
+        return self.__argument_type
 
     cpdef str getId(self):
         """
@@ -64,7 +66,7 @@ cdef class Argument(object):
         str
             string form of argument
         """
-        if self.__argumentType == "NONE":
-            return self.__argumentType
+        if self.__argument_type == "NONE":
+            return self.__argument_type
         else:
-            return self.__argumentType + "$" + self.__id
+            return self.__argument_type + "$" + self.__id

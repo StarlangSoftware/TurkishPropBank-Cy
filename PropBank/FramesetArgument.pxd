@@ -1,6 +1,6 @@
 cdef class FramesetArgument(object):
 
-    cdef str __argumentType,__definition, __function
+    cdef str __argument_type,__definition, __function
 
     cpdef str getArgumentType(self)
     cpdef str getDefinition(self)
