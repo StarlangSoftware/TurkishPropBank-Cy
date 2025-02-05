@@ -1,6 +1,6 @@
 cdef class ArgumentList(object):
 
-    cdef list arguments
+    cdef list __arguments
 
     cpdef updateConnectedId(self, str previousId, str currentId)
     cpdef addPredicate(self, str predicateId)

@@ -9,10 +9,10 @@ cdef class ArgumentList:
         separated via '#' character.
         :param argumentList: String consisting of arguments separated with '#' character.
         """
-        self.arguments = []
+        self.__arguments = []
         items = argumentList.split('#')
         for item in items:
-            self.arguments.append(Argument(item))
+            self.__arguments.append(Argument(item))
 
     def __str__(self) -> str:
         """
@@ -20,12 +20,12 @@ cdef class ArgumentList:
         arguments with '#' character.
         :return: String form of the argument list.
         """
-        if len(self.arguments) == 0:
+        if len(self.__arguments) == 0:
             return "NONE"
         else:
-            result = self.arguments[0].__str__()
-            for i in range(1, len(self.arguments)):
-                result += "#" + self.arguments[i].__str__()
+            result = self.__arguments[0].__str__()
+            for i in range(1, len(self.__arguments)):
+                result += "#" + self.__arguments[i].__str__()
             return result
 
     cpdef updateConnectedId(self, str previousId, str currentId):
@@ -35,7 +35,7 @@ cdef class ArgumentList:
         :param currentId: Replacement id.
         """
         cdef Argument argument
-        for argument in self.arguments:
+        for argument in self.__arguments:
             if argument.getId() == previousId:
                 argument.setId(currentId)
 
@@ -44,18 +44,18 @@ cdef class ArgumentList:
         Adds a predicate argument to the argument list of this word.
         :param predicateId: Synset id of this predicate.
         """
-        if len(self.arguments) != 0 and self.arguments[0].getArgumentType() == "NONE":
-            self.arguments.pop(0)
-        self.arguments.append(Argument("PREDICATE", predicateId))
+        if len(self.__arguments) != 0 and self.__arguments[0].getArgumentType() == "NONE":
+            self.__arguments.pop(0)
+        self.__arguments.append(Argument("PREDICATE", predicateId))
 
     cpdef removePredicate(self):
         """
         Removes the predicate with the given predicate id.
         """
         cdef Argument argument
-        for argument in self.arguments:
+        for argument in self.__arguments:
             if argument.getArgumentType() == "PREDICATE":
-                self.arguments.remove(argument)
+                self.__arguments.remove(argument)
                 break
 
     cpdef bint containsPredicate(self):
@@ -64,7 +64,7 @@ cdef class ArgumentList:
         :return: True, if one of the arguments is predicate; false otherwise.
         """
         cdef Argument argument
-        for argument in self.arguments:
+        for argument in self.__arguments:
             if argument.getArgumentType() == "PREDICATE":
                 return True
         return False
@@ -76,7 +76,7 @@ cdef class ArgumentList:
         :return: True, if one of the arguments is predicate; false otherwise.
         """
         cdef Argument argument
-        for argument in self.arguments:
+        for argument in self.__arguments:
             if argument.getArgumentType() == "PREDICATE" and argument.getId() == predicateId:
                 return True
         return False
@@ -88,7 +88,7 @@ cdef class ArgumentList:
         """
         cdef Argument argument
         cdef list result = []
-        for argument in self.arguments:
+        for argument in self.__arguments:
             result.append(argument.__str__())
         return result
 
@@ -100,7 +100,7 @@ cdef class ArgumentList:
         :return: True if the argument exists, false otherwise.
         """
         cdef Argument argument
-        for argument in self.arguments:
+        for argument in self.__arguments:
             if argument.getArgumentType() == argumentType and argument.getId() == _id:
                 return True
         return False
