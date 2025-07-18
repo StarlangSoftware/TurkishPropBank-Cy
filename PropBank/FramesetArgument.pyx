@@ -3,7 +3,8 @@ cdef class FramesetArgument(object):
     def __init__(self,
                  argumentType: str,
                  definition: str,
-                 function: str = None):
+                 function: str = None,
+                 grammaticalCase: str = None):
         """
         A constructor of FramesetArgument class which takes argumentType and definition as input and initializes
         corresponding attributes
@@ -16,10 +17,13 @@ cdef class FramesetArgument(object):
             Definition of the frameset argument
         function : str
             Function of the frameset argument
+        grammaticalCase : str
+            GrammaticalCase of the frameset argument
         """
         self.__argument_type = argumentType
         self.__definition = definition
         self.__function = function
+        self.__grammatical_case = grammaticalCase
 
     cpdef str getArgumentType(self):
         """
@@ -54,6 +58,17 @@ cdef class FramesetArgument(object):
         """
         return self.__function
 
+    cpdef str getGrammaticalCase(self):
+        """
+        Accessor for grammaticalCase.
+
+        RETURNS
+        -------
+        str
+            grammaticalCase.
+        """
+        return self.__grammatical_case
+
     cpdef setDefinition(self, str definition):
         """
         Mutator for definition.
@@ -75,6 +90,17 @@ cdef class FramesetArgument(object):
             function to set.
         """
         self.__function = function
+
+    cpdef setGrammaticalCase(self, str grammaticalCase):
+        """
+        Mutator for grammaticalCase.
+
+        PARAMETERS
+        ----------
+        grammaticalCase : str
+            grammaticalCase to set.
+        """
+        self.__grammatical_case = grammaticalCase
 
     def __str__(self) -> str:
         """
