@@ -9,7 +9,7 @@ setup(
     ext_modules=cythonize(["PropBank/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='nlptoolkit-propBank-cy',
-    version='1.0.16',
+    version='1.0.17',
     packages=['PropBank', 'PropBank.data'],
     package_data={'PropBank': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'PropBank.data': ['*.xml']},
