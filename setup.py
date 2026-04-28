@@ -8,8 +8,8 @@ from Cython.Build import cythonize
 setup(
     ext_modules=cythonize(["PropBank/*.pyx"],
                           compiler_directives={'language_level': "3"}),
-    name='nlptoolkit-propBank-cy',
-    version='1.0.17',
+    name='nlptoolkit_propbank_cy',
+    version='1.0.18',
     packages=['PropBank', 'PropBank.data'],
     package_data={'PropBank': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'PropBank.data': ['*.xml']},
